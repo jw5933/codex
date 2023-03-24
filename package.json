@@ -1,0 +1,19 @@
+{
+  "name": "final-project-jw5933",
+  "version": "1.0.0",
+  "description": "The content below is an example project proposal / requirements document. Replace the text below the lines marked \"__TODO__\" with details specific to your project. Remove the \"TODO\" lines.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.2",
+    "mongoose-slug-updater": "^3.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.36.0"
+  }
+}

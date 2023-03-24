@@ -1,3 +1,5 @@
 node_modules
 *.swo
 *.swp
+.idea
+.DS_store
