@@ -88,4 +88,4 @@ example Word:
 - automated testing (5 points) or unit testing (3 points)
   - with headless chrome, to test routes & forms
   - or with Jest
-- react.js (4 points)
+- next.js (4 points)

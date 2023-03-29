@@ -1,6 +1,14 @@
 // 1ST DRAFT DATA MODEL
-import mongoose from 'mongoose';
+import mongoose, {mongo} from 'mongoose';
 mongoose.connect('mongodb://localhost/hw05');
+
+/*
+a group in the codex, which allows for further filtering
+ */
+const GroupSchema = new mongoose.Schema ({
+    name: {type:String, required: true},
+    options: { type: [String], default: ["-"] },
+});
 
 /*
 a definition for a word
@@ -8,7 +16,7 @@ a definition for a word
  */
 const DefinitionSchema = new mongoose.Schema ({
         definition: { type: String, required: true},
-        groups: {}
+        groups: {type: Map, of: String}
     });
 
 /*
@@ -23,7 +31,10 @@ const WordSchema = new mongoose.Schema ({
     },
     word: {type: String, required: true},
     definitions: [DefinitionSchema],
-    starred: Boolean,
+    starred: { // thanks for the suggestion! :>
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     }
 );
 
@@ -49,7 +60,7 @@ const CodexSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Word'
     }],
-    groups: {}, //possible groupings for words
+    groups: [], //possible groupings for words
 });
 
 export const Codex = mongoose.model('Codex', CodexSchema);
