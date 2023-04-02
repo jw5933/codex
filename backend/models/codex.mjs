@@ -1,6 +1,9 @@
 // 1ST DRAFT DATA MODEL
 import mongoose, {mongo} from 'mongoose';
 // mongoose.connect('mongodb://localhost/hw05');
+// plugin setup
+import slug from 'mongoose-slug-updater'
+mongoose.plugin(slug)
 
 /*
 a group in the codex, which allows for further filtering
@@ -61,7 +64,14 @@ const CodexSchema = new mongoose.Schema({ //TODO: make required parameters
         ref: 'Word'
     }],
     groups: [], //possible groupings for words
-    likes: Number
+    likes: Number,
+    slug: {
+        type: String,
+        slug: ["name"], //TODO: fill with name, username
+        unique: true,
+        slugPaddingSize: 4
+    },
+    user: {} //TODO: remove when owner is set up
 });
 
 export const Codex = mongoose.model('Codex', CodexSchema);

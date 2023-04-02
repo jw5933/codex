@@ -21,10 +21,10 @@ mongoose.connect(config.MONGODB_URI)
 
 app.use(cors());
 
-app.get('/directory', (req, res) => {
+app.get('/directory', async (req, res) => {
     console.log('showing directories');
-    return res.status(200);
-    // res.json(directory);
+    const directory = await Codex.find({}, {user: 1, name: 1, likes: 1, slug: 1}); //TODO: fill with wanted values
+    res.json(directory);
 })
 
 app.post('/codices', async (req, res) => {
