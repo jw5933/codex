@@ -1,6 +1,6 @@
 // 1ST DRAFT DATA MODEL
 import mongoose, {mongo} from 'mongoose';
-mongoose.connect('mongodb://localhost/hw05');
+// mongoose.connect('mongodb://localhost/hw05');
 
 /*
 a group in the codex, which allows for further filtering
@@ -43,7 +43,7 @@ a collection of words
     - can be collaborated on with the public or specified users
     - has a set of custom groups that can be used for filtering (for example, part of speech like noun, adj, verb)
  */
-const CodexSchema = new mongoose.Schema({
+const CodexSchema = new mongoose.Schema({ //TODO: make required parameters
     owner: { //reference to creator of dictionary
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -61,6 +61,7 @@ const CodexSchema = new mongoose.Schema({
         ref: 'Word'
     }],
     groups: [], //possible groupings for words
+    likes: Number
 });
 
 export const Codex = mongoose.model('Codex', CodexSchema);
