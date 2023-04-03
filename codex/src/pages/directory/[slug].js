@@ -1,4 +1,4 @@
-import codexService from '@/services/codex'
+import codexService from '@/services/codex.mjs'
 
 export default function DirectorySlug(codex) {
     return (
