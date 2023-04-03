@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = `http://localhost:${process.env.PORT+1??3001}/codices`;
+const baseUrl = `http://localhost:${process.env.PORT??3001}/api/codices`;
 
 const getAll = async () => { //TODO: check authorization later on
     const response = await axios.get(baseUrl);
