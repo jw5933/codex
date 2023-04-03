@@ -4,6 +4,7 @@ const nextConfig = {
   env: {
     PORT: process.env.PORT || 3001,
   },
+  experimental: { esmExternals: true },
 };
 
 module.exports = nextConfig;
