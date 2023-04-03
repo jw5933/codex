@@ -1,6 +1,6 @@
-import CodexForm from "./CodexForm.mjs";
+import CodexForm from "./CodexForm";
 import {useEffect, useState} from "react";
-import directoryService from '@/services/directory.mjs'
+import directoryService from '@/services/directory'
 import {useRouter} from "next/router";
 
 export const Directory = () => {

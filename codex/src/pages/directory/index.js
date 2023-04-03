@@ -1,4 +1,4 @@
-import {Directory} from "@/components/Directory.mjs";
+import {Directory} from "@/components/Directory";
 export default function Index() {
     return (
         <>
