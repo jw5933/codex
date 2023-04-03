@@ -2,10 +2,10 @@ import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url';
 import mongoose from "mongoose";
-import config from '../config.js';
-import cors from 'cors';
+import config from '../../config';
+// import cors from 'cors';
 
-import {Codex, Word} from '../models/codex.mjs'
+import {Codex, Word} from '../../models/codex.mjs'
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -19,7 +19,7 @@ mongoose.connect(config.MONGODB_URI)
     .then(() => console.log('connected to mongoDB'))
     .catch((error) => console.log('error connecting to mongoDB'));
 
-app.use(cors());
+// app.use(cors());
 
 app.get('api/directory', async (req, res) => {
     console.log('showing directories');
