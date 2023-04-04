@@ -5,7 +5,9 @@ import mongoose from "mongoose";
 import config from '../../config';
 // import cors from 'cors';
 
-import {Codex, Word} from '../../models/codex.mjs'
+import CodexModels from '../../models/codex.mjs'
+const Codex = CodexModels.Codex;
+const Word = CodexModels.Word;
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);

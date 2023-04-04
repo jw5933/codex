@@ -4,7 +4,9 @@ import mongoose from "mongoose";
 import config from './config.js';
 // import cors from 'cors';
 
-import {Codex, Word} from './models/codex.mjs'
+import CodexModels from './models/codex.mjs'
+const Codex = CodexModels.Codex;
+const Word = CodexModels.Word;
 
 // import path from 'path'
 // import { fileURLToPath } from 'url';
@@ -52,7 +54,6 @@ server.all('*', (req, res) => {
     return handle(req, res)
 })
 
-console.log(process.env);
 const PORT = process.env.PORT || 3000
 app.prepare().then(() => {
     server.listen(PORT, err => {

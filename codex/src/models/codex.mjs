@@ -74,5 +74,9 @@ const CodexSchema = new mongoose.Schema({ //TODO: make required parameters
     user: {} //TODO: remove when owner is set up
 });
 
-export const Codex = mongoose.model('Codex', CodexSchema);
-export const Word = mongoose.model('Word', WordSchema);
+const Codex = mongoose.model('Codex', CodexSchema);
+const Word = mongoose.model('Word', WordSchema);
+export default {
+    Codex,
+    Word
+}
