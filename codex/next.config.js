@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    PORT: process.env.PORT || 3001,
+    BACKEND_SERVER: process.env.BACKEND_SERVER,
+    // Add additional environment variables here as needed
   },
 };
 
