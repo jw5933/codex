@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import config from '../../config';
 // import cors from 'cors';
 
-import models from '../../models/codex.mjs'
+import models from '../../models/codex.js'
 const {Codex, Word} = models;
 
 const app = express();
