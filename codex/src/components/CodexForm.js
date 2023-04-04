@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import codexService from '../services/codex.mjs'
+import codexService from '../services/codex'
 import {useRouter} from "next/router";
 
 const CodexForm = () => {
