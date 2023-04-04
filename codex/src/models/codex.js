@@ -1,8 +1,9 @@
 // 1ST DRAFT DATA MODEL
-import mongoose, {mongo} from 'mongoose';
+import mongoose from 'mongoose'
 // mongoose.connect('mongodb://localhost/hw05');
 // plugin setup
 import slug from 'mongoose-slug-updater'
+import CodexForm from "@/components/CodexForm";
 mongoose.plugin(slug)
 
 /*
@@ -74,9 +75,9 @@ const CodexSchema = new mongoose.Schema({ //TODO: make required parameters
     user: {} //TODO: remove when owner is set up
 });
 
-const Codex = mongoose.model('Codex', CodexSchema);
-const Word = mongoose.model('Word', WordSchema);
-export default {
+export const Codex = mongoose.models.Codex || mongoose.model('Codex', CodexSchema);
+export const Word = mongoose.models.Word || mongoose.model('Word', WordSchema);
+module.exports = {
     Codex,
     Word
 }
