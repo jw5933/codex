@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 // mongoose.connect('mongodb://localhost/hw05');
 // plugin setup
 import slug from 'mongoose-slug-updater'
-import CodexForm from "@/components/CodexForm";
 mongoose.plugin(slug)
 
 /*
@@ -77,7 +76,3 @@ const CodexSchema = new mongoose.Schema({ //TODO: make required parameters
 
 export const Codex = mongoose.models.Codex || mongoose.model('Codex', CodexSchema);
 export const Word = mongoose.models.Word || mongoose.model('Word', WordSchema);
-module.exports = {
-    Codex,
-    Word
-}

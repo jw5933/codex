@@ -4,9 +4,7 @@ import mongoose from "mongoose";
 import config from './config.js';
 // import cors from 'cors';
 
-import CodexModels from './models/codex.mjs'
-const Codex = CodexModels.Codex;
-const Word = CodexModels.Word;
+import {Codex, Word} from './models/codex.mjs'
 
 // import path from 'path'
 // import { fileURLToPath } from 'url';
