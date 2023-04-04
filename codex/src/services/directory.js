@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = `http://localhost:${process.env.PORT??3001}/api/directory`;
+const baseUrl = `${process.env.BACK_SERVER ?? 'http://localhost:3001'}/directory`;
 
 const getAll = () => {
     const request = axios.get(baseUrl);
