@@ -23,7 +23,7 @@ app.use(cors());
 
 app.get('/directory', async (req, res) => {
     console.log('showing directories');
-    const directory = await Codex.find({}, {user: 1, name: 1, likes: 1, slug: 1}); //TODO: fill with wanted values
+    const directory = await Codex.find({}, {user: 1, name: 1, likes: 1, slug: 1}); //TODO: change 'user' when theres authentication
     res.json(directory);
 })
 
@@ -42,5 +42,18 @@ app.post('/codices', async (req, res) => {
     return res.status(201).json({ message: "created codex" });
 })
 
-console.log("listening on port " + (config.PORT || 3000))
-app.listen(config.PORT || 3000);
+app.get('/codices/:slug', async (req, res) => {
+    const slug = req.params.slug;
+    console.log(`requested get on slug: ${slug}`);
+    res.send(`would get`);
+})
+
+app.post('/codices/:slug', async (req, res) => {
+    const slug = req.params.slug;
+    console.log(`requested post on slug: ${slug}`);
+    res.send('would post');
+})
+
+
+console.log("listening on port " + (config.PORT || 3001))
+app.listen(config.PORT || 3001);

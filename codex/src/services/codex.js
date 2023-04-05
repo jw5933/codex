@@ -8,7 +8,7 @@ const getAll = async () => { //TODO: check authorization later on
 };
 
 const getCodex = async (slug) => {
-    const response = await axios.get(`baseUrl/:${slug}`);
+    const response = await axios.get(`${baseUrl}/${slug}`);
     return response.data;
 }
 
@@ -19,7 +19,9 @@ const createNewCodex = async (settings) => {
 }
 
 const createNewWord = async (slug, word) => {
-
+    console.log(slug, word);
+    const response = await axios.post(`${baseUrl}/${slug}`, {word});
+    return response.data;
 }
 
 export default{

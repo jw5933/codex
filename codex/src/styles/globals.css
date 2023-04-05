@@ -116,3 +116,21 @@ form.input input[type="submit"] {
 form.input input[type="submit"]:hover {
     background-color: royalblue;
 }
+
+.flexbox {
+ display: flex;
+}
+
+.blackSelect {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+.whiteSelect {
+    /*background-color: white;*/
+    color: black;
+    cursor: pointer;
+    text-align: center;
+}

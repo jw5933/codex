@@ -63,7 +63,7 @@ const CodexSchema = new mongoose.Schema({ //TODO: make required parameters
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Word'
     }],
-    groups: [], //possible groupings for words
+    groups: [GroupSchema], //possible groupings for words
     likes: Number,
     slug: {
         type: String,
