@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import codexService from '../services/codex'
 import {useRouter} from "next/router";
+import codex from "../services/codex";
 
-const WordForm = ({slug}) => {
+const WordForm = ({slug, codex, setCodex}) => {
     const router = useRouter();
     const [visible, setVisible] = useState(false);
     const [newWord, setNewWord] = useState('');
     const [newDefinitions, setNewDefinitions] = useState([]);
     const [newDefinition, setNewDefinition] = useState('');
+    const [message, setMessage] = useState(null);
 
     const handleVisibility = (event) => {
         event.preventDefault();
@@ -19,6 +21,7 @@ const WordForm = ({slug}) => {
         setNewWord('');
         setNewDefinition('');
         setNewDefinitions([]);
+        setMessage(null);
     };
 
     const addNewDefinition = () => {
@@ -36,11 +39,20 @@ const WordForm = ({slug}) => {
         event.preventDefault();
         if (newWord === '') return;
         try {
-            await codexService.createNewWord(
+            //TODO: check if word is already in codex, if so, ask user to add the definition (or do it automatically)
+            if (codex.words.filter(wordObj => wordObj.word === newWord).length > 0) {
+                console.log("word already exists.")
+                setMessage(`word ${newWord} already exists. Can't delete or edit right now sorry!`);
+                return;
+            }
+
+            const updatedCodex = await codexService.createNewWord(
                 slug,
                 {word: newWord, definitions: newDefinitions});
             await router.push(router.asPath);
             resetStates();
+            console.log(updatedCodex);
+            setCodex(updatedCodex);
         }catch (e){
             console.log(e);
         }
@@ -51,7 +63,9 @@ const WordForm = ({slug}) => {
         <>
             {!visible ? (<button onClick={handleVisibility}>Create Word</button>)
                 :
-                (<form onSubmit = {handleOnSubmit}>
+                (<>
+                    {message}
+                <form onSubmit = {handleOnSubmit}>
                     <label>
                         Word: <input type={"text"} value={newWord} name={"word"} onChange={handleChange}/>
                     </label>
@@ -67,7 +81,8 @@ const WordForm = ({slug}) => {
                     <br/>
                     <button type={"button"} onClick={handleVisibility}>Cancel</button>
                     <button type="submit">Add word</button>
-                </form>)
+                </form>
+                </>)
             }
         </>
     );

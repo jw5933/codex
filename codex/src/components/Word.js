@@ -7,8 +7,8 @@ export const Word = ({wordObj}) => {
                 <tr><th>{wordObj.word}</th></tr>
                 </thead>
                 <tbody>
-                {wordObj.definitions?.map( definitionObj =>
-                    <tr key={definitionObj.definition}><th>{definitionObj.definition}</th></tr> //TODO: fix key..
+                {wordObj.definitions?.map( (definitionObj, index) =>
+                    <tr key={index}><th>{definitionObj.definition}</th></tr>
                 )}
                 </tbody>
             </table>

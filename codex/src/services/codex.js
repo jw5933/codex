@@ -3,12 +3,14 @@ import axios from 'axios';
 const baseUrl = `${process.env.BACKEND_SERVER ?? 'http://localhost:3001'}/codices`;
 
 const getAll = async () => { //TODO: check authorization later on
-    const response = await axios.get(baseUrl);
-    return response.data;
+    const request = axios.get(baseUrl);
+    return request.then(response => response.data);
 };
 
 const getCodex = async (slug) => {
-    const response = await axios.get(`${baseUrl}/${slug}`);
+    const response = await axios.get(`${baseUrl}/${slug}`, {
+        params: {slug: slug}
+    });
     return response.data;
 }
 

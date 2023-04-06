@@ -1,5 +1,5 @@
 // 1ST DRAFT DATA MODEL
-import mongoose, {mongo} from 'mongoose';
+import mongoose from 'mongoose';
 // mongoose.connect('mongodb://localhost/hw05');
 // plugin setup
 import slug from 'mongoose-slug-updater'
@@ -34,10 +34,10 @@ const WordSchema = new mongoose.Schema ({
     },
     word: {type: String, required: true},
     definitions: [DefinitionSchema],
-    starred: { // thanks for the suggestion! :>
+    starred: [{ // thanks for the suggestion! :>
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    },
+    }],
     }
 );
 
