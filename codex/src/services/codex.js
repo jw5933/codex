@@ -3,12 +3,14 @@ import axios from 'axios';
 const baseUrl = `${process.env.BACKEND_SERVER ?? 'http://localhost:3001'}/codices`;
 
 const getAll = async () => { //TODO: check authorization later on
-    const response = await axios.get(baseUrl);
-    return response.data;
+    const request = axios.get(baseUrl);
+    return request.then(response => response.data);
 };
 
 const getCodex = async (slug) => {
-    const response = await axios.get(`baseUrl/:${slug}`);
+    const response = await axios.get(`${baseUrl}/${slug}`, {
+        params: {slug: slug}
+    });
     return response.data;
 }
 
@@ -19,7 +21,9 @@ const createNewCodex = async (settings) => {
 }
 
 const createNewWord = async (slug, word) => {
-
+    console.log(slug, word);
+    const response = await axios.post(`${baseUrl}/${slug}`, {word});
+    return response.data;
 }
 
 export default{

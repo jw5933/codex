@@ -29,7 +29,14 @@ example Codex:
 	collaboratorPermissions: "rw",
 	name: "Language of GOT",
 	words: //array of references to words,
-	filters: ["type", "tongue"]
+	groups: [
+	  {name: "type",
+	  options: "noun", "verb", "adj"}, 
+	  {name: "tongue",
+	  options: "dorthraki, valyrian"}
+	],
+	likes: 34,
+	slug: "language-of-GOT-aegon"
 }
 ```
 
@@ -45,9 +52,21 @@ example Word:
 	starred: true,
 }
 ```
-<a href = "models/codex.mjs">Link to Codex draft</a>
 
-<a href = "models/user.mjs">Link to user draft</a>
+example Definition:
+```
+{
+	definition: "a boy", 
+	groups: {
+	  type: "-", 
+	  tongue: "dorthraki"
+	}
+}
+```
+
+<a href = "models/codex.mjs">Link to Codex</a>
+
+<a href = "models/user.mjs">Link to User</a>
 
 ### WireFrames
 `/login`

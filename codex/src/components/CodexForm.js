@@ -52,15 +52,15 @@ const CodexForm = () => {
                     </label>
                     <br/>
 
-                    <div style={{ display: 'flex' }}>
+                    <div className={'flexbox'}>
                         <div
-                            style={{ backgroundColor: codexSettings.privacy === 'private' ? 'black' : 'white', color: codexSettings.privacy === 'private' ? 'white' : 'black', textAlign: 'center', cursor: 'pointer' }}
+                            className={(codexSettings.privacy === 'private' ? 'blackSelect' : 'whiteSelect')}
                             onClick={() => togglePrivacy('private')}
                         >
                             Private
                         </div>
                         <div
-                            style={{ backgroundColor: codexSettings.privacy === 'public' ? 'black' : 'white', color: codexSettings.privacy === 'public' ? 'white' : 'black', textAlign: 'center', cursor: 'pointer' }}
+                            className={(codexSettings.privacy === 'public' ? 'blackSelect' : 'whiteSelect')}
                             onClick={() => togglePrivacy('public')}
                         >
                             Public
