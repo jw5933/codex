@@ -96,15 +96,12 @@ example Definition:
 3. as a user, I can log into the site
 4. as a user, I can create new dictionaries
 5. as a user, I can edit my dictionaries (CRUD words)
-6. as a user, I can share dictionaries (or not), with whom I choose
-7. as a user, I can collaborate with others on a dictionary
+6. (N/A) as a user, I can share dictionaries (or not), with whom I choose
+7. (N/A) as a user, I can collaborate with others on a dictionary
 
 ### Research topics
-- Language APIs (1 point)
+- (N/A) Language APIs (1 point)
   - to add existing words from dictionaries easily, I'll use an english dictionary API
-- authentication API (1 point)
-- form validation API (1 point)
-- automated testing (5 points) or unit testing (3 points)
-  - with headless chrome, to test routes & forms
-  - or with Jest
-- next.js (4 points)
+- form validation API (3 point)
+- passport.js (server side) (3 points)
+- next.js (5 points)
