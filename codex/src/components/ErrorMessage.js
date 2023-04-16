@@ -1,6 +1,6 @@
 export const ErrorMessage = ({message}) => {
     return (
-        <div className={'error-message'}>
+        <div className={'error_message'}>
             {message}
         </div>
     )
@@ -11,7 +11,7 @@ export const ErrorMessages = ({messages}) => {
     return (
         <>
             {messages.map((m, i)=> (
-                <div className={'error-message'} key ={i}>
+                <div className={'error_message'} key ={i}>
                 {m}
                 </div>
             ))}

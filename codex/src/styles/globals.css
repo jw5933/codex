@@ -135,11 +135,21 @@ form.input input[type="submit"]:hover {
     text-align: center;
 }
 
-.error-message {
+.error_message {
     color: red;
     font-weight: bold;
     border: 2px solid red;
     padding: 0px;
     margin: 2px 0;
     background-color: #ffd2db;
+}
+
+td.word_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+td.indent {
+    padding-left: 20px;
 }

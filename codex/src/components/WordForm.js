@@ -22,7 +22,7 @@ const WordForm = ({slug, codex, setCodex}) => {
     const [visible, setVisible] = useState(false);
     const [newWord, setNewWord] = useState('');
     const [newDefinitions, setNewDefinitions] = useState([]);
-    const [newDefinition, setNewDefinition] = useState(null);
+    const [newDefinition, setNewDefinition] = useState('');
     const [errorMessages, setErrorMessages] = useState(null);
 
     const formValidator = combineValidators ({
@@ -40,16 +40,17 @@ const WordForm = ({slug, codex, setCodex}) => {
     const resetStates = () => {
         setNewWord('');
         setNewDefinition('');
-        setNewDefinitions(null);
+        setNewDefinitions([]);
         setErrorMessages(null);
     };
 
     const addNewDefinition = () => {
-        if (newDefinition !== '') setNewDefinitions(newDefinitions??[].concat(newDefinition));
+        if (newDefinition !== '') setNewDefinitions(newDefinitions.concat(newDefinition));
         setNewDefinition('');
     };
 
     const handleChange = (event) => {
+        event.preventDefault();
         if (event.target.name === 'word') setNewWord(event.target.value);
         //TODO: definitions should be objects, with definition and groups
         if (event.target.name === 'definition') setNewDefinition(event.target.value);
@@ -97,11 +98,12 @@ const WordForm = ({slug, codex, setCodex}) => {
                     </label>
                     <br/>
                     Definitions:
-                    {newDefinition==[] ? <p>None yet. Add below: </p> : (<ul>
+                    {newDefinitions.length === 0 ? <p>None yet. Add below: </p> : (<ul>
                         {newDefinitions?.map((def, i) => (
                             <li key={i}>{def}</li>
                         ))}
-                    </ul>)}
+                    </ul>
+                    )}
                     <input type={"text"} value={newDefinition} name = {"definition"} onChange={handleChange}/>
                     <button type={"button"} onClick={addNewDefinition}>Add definition</button>
                     {errorMessages && <ErrorMessages messages={Object.values(errorMessages)}/>}
