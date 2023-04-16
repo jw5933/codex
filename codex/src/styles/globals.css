@@ -134,3 +134,12 @@ form.input input[type="submit"]:hover {
     cursor: pointer;
     text-align: center;
 }
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    border: 2px solid red;
+    padding: 0px;
+    margin: 2px 0;
+    background-color: #ffd2db;
+}

@@ -2,14 +2,34 @@ import { useState } from 'react';
 import codexService from '../services/codex'
 import {useRouter} from "next/router";
 import codex from "../services/codex";
+import {createValidator, isRequired, combineValidators, composeValidators} from 'revalidate';
+import {ErrorMessages} from "@/components/ErrorMessage";
+
+//form validation documentation: http://revalidate.jeremyfairbank.com
+const alreadyExists = (arrName, customMessage) => createValidator(
+    message => ({arr, value}) => {
+        if (arr.filter(v => v === value).length > 0){
+            return message;
+        }
+    },
+    field => {
+        return `${field} already exists in ${arrName}.${customMessage??''}`
+    }
+)
 
 const WordForm = ({slug, codex, setCodex}) => {
     const router = useRouter();
     const [visible, setVisible] = useState(false);
     const [newWord, setNewWord] = useState('');
     const [newDefinitions, setNewDefinitions] = useState([]);
-    const [newDefinition, setNewDefinition] = useState('');
-    const [message, setMessage] = useState(null);
+    const [newDefinition, setNewDefinition] = useState(null);
+    const [errorMessages, setErrorMessages] = useState(null);
+
+    const formValidator = combineValidators ({
+        word: isRequired('word'),
+        arr: alreadyExists(`Codex, ${codex.name}`, ' Please edit the definition instead.')('word'),
+        definition: isRequired('definition')
+    })
 
     const handleVisibility = (event) => {
         event.preventDefault();
@@ -20,12 +40,12 @@ const WordForm = ({slug, codex, setCodex}) => {
     const resetStates = () => {
         setNewWord('');
         setNewDefinition('');
-        setNewDefinitions([]);
-        setMessage(null);
+        setNewDefinitions(null);
+        setErrorMessages(null);
     };
 
     const addNewDefinition = () => {
-        if (newDefinition !== '') setNewDefinitions(newDefinitions.concat(newDefinition));
+        if (newDefinition !== '') setNewDefinitions(newDefinitions??[].concat(newDefinition));
         setNewDefinition('');
     };
 
@@ -37,12 +57,20 @@ const WordForm = ({slug, codex, setCodex}) => {
 
     const handleOnSubmit = async (event) => {
         event.preventDefault();
-        if (newWord === '') return;
         try {
-            //TODO: check if word is already in codex, if so, ask user to add the definition (or do it automatically)
-            if (codex.words.filter(wordObj => wordObj.word === newWord).length > 0) {
-                console.log("word already exists.")
-                setMessage(`word ${newWord} already exists. Can't delete or edit right now sorry!`);
+            const invalid = formValidator({
+                word: newWord,
+                arr: {
+                    arr: codex.words.map(obj => obj.word),
+                    value: newWord
+                },
+                definition: newDefinitions
+            });
+            console.log('invalid', invalid)
+            console.log('word', newWord);
+
+            if (Object.keys(invalid).length) {
+                setErrorMessages(invalid);
                 return;
             }
 
@@ -63,26 +91,24 @@ const WordForm = ({slug, codex, setCodex}) => {
         <>
             {!visible ? (<button onClick={handleVisibility}>Create Word</button>)
                 :
-                (<>
-                    {message}
-                <form onSubmit = {handleOnSubmit}>
+                (<form onSubmit = {handleOnSubmit}>
                     <label>
                         Word: <input type={"text"} value={newWord} name={"word"} onChange={handleChange}/>
                     </label>
                     <br/>
                     Definitions:
-                    <ul>
+                    {newDefinition==[] ? <p>None yet. Add below: </p> : (<ul>
                         {newDefinitions?.map((def, i) => (
                             <li key={i}>{def}</li>
                         ))}
-                    </ul>
+                    </ul>)}
                     <input type={"text"} value={newDefinition} name = {"definition"} onChange={handleChange}/>
                     <button type={"button"} onClick={addNewDefinition}>Add definition</button>
+                    {errorMessages && <ErrorMessages messages={Object.values(errorMessages)}/>}
                     <br/>
                     <button type={"button"} onClick={handleVisibility}>Cancel</button>
                     <button type="submit">Add word</button>
-                </form>
-                </>)
+                </form>)
             }
         </>
     );

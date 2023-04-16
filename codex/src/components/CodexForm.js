@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import codexService from '../services/codex'
-import {useRouter} from "next/router";
+import {useRouter} from 'next/router';
+import {isRequired, isAlphaNumeric, combineValidators, composeValidators} from 'revalidate';
+import {ErrorMessage} from "@/components/ErrorMessage";
 
 const CodexForm = () => {
     const router = useRouter();
@@ -9,6 +11,7 @@ const CodexForm = () => {
         name: '',
         privacy: 'private'
     });
+    const [errorMessage, setErrorMessage] = useState(null);
 
     const handleVisibility = (event) => {
         event.preventDefault();
@@ -17,6 +20,7 @@ const CodexForm = () => {
             name: '',
             privacy: 'private'
         });
+        setErrorMessage(null);
     };
     const handleChange = (event) => {
         setCodexSettings({
@@ -25,9 +29,19 @@ const CodexForm = () => {
         });
     };
 
+    const formValidator = composeValidators(
+        isRequired,
+        isAlphaNumeric
+    )('Codex name');
+
     const handleOnSubmit = async (event) => {
         event.preventDefault();
         try {
+            const validation = formValidator(codexSettings.name);
+            if (validation){
+                setErrorMessage(validation);
+                return;
+            }
             await codexService.createNewCodex(codexSettings);
             router.reload();
         }catch (e){
@@ -66,8 +80,7 @@ const CodexForm = () => {
                             Public
                         </div>
                     </div>
-
-                    <br/>
+                    {errorMessage && <ErrorMessage message={errorMessage}/>}
                     <button onClick={handleVisibility}>Cancel</button>
                     <button type="submit">Create</button>
                 </form>)

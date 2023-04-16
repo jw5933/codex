@@ -7,6 +7,16 @@ import cors from 'cors';
 
 import {Codex, Word} from './models/codex.mjs'
 
+const requestsLog = (request, response, next) => {
+    console.log('------');
+    console.log('Request');
+    console.log('Method:', request.method);
+    console.log('Path:  ', request.path);
+    console.log('Body:  ', request.body);
+    console.log('------\n');
+    next();
+}
+
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,6 +24,7 @@ const __dirname = path.dirname(__filename);
 //body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(requestsLog);
 
 mongoose.connect(config.MONGODB_URI)
     .then(() => console.log('connected to mongoDB'))

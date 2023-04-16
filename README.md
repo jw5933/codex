@@ -100,8 +100,9 @@ example Definition:
 7. (N/A) as a user, I can collaborate with others on a dictionary
 
 ### Research topics
-- (N/A) Language APIs (1 point)
-  - to add existing words from dictionaries easily, I'll use an english dictionary API
 - form validation API (3 point)
-- passport.js (server side) (3 points)
+  - revalidate (next.js library): http://revalidate.jeremyfairbank.com
+- configuration (3 points)
 - next.js (5 points)
+- (N/A) passport.js (server side)
+- (N/A) Language APIs

@@ -4,17 +4,17 @@ import directoryService from '@/services/directory'
 import {useRouter} from "next/router";
 
 export const Directory = () => {
-    console.log('Component rendered');
+    // console.log('Component rendered');
     const router = useRouter();
     const [directory, setDirectory] = useState([]);
 
     useEffect(() => {
-        console.log('Effect called');
+        // console.log('Effect called');
         try {
             directoryService
                 .getAll()
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     setDirectory(data);
                 });
         } catch (error) {
