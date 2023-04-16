@@ -26,9 +26,21 @@ const createNewWord = async (slug, word) => {
     return response.data;
 }
 
+const editWord = async (slug, wordId, word) => {
+    const response = await axios.put(`${baseUrl}/${slug}`, {wordId, word});
+    return response.data;
+}
+
+const deleteWord = async (slug, wordId) => {
+    const response = await axios.delete(`${baseUrl}/${slug}`, {data: {wordId}});
+    return response.data;
+}
+
 export default{
     getAll,
     getCodex,
     createNewCodex,
-    createNewWord
+    createNewWord,
+    editWord,
+    deleteWord
 };

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import codexService from '@/services/codex'
 import {Word} from "@/components/Word";
-export const Codex = ({codex}) => {
+export const Codex = ({slug, codex, setCodex}) => {
     const words = codex.words;
     return (
         <>
@@ -11,7 +11,7 @@ export const Codex = ({codex}) => {
                 {(words? words.map(wordObj => {
                     return (
                         <div key={wordObj.word}>
-                            <Word wordObj={wordObj}/>
+                            <Word slug={slug} wordObject={wordObj} setCodex={setCodex}/>
                         </div>
                     )
                 }): "no words yet!")}

@@ -1,13 +1,12 @@
 import {useState} from "react";
 import {ErrorMessages} from "@/components/ErrorMessage";
-export const EditWordForm = ({wordObj}) => {
-    console.log(wordObj)
+import codexService from "../services/codex";
+export const EditWordForm = ({slug, wordObj, setWordObj, setEditWord}) => {
     const [newWord, setNewWord] = useState(wordObj.word??'');
     const [newDefinitions, setNewDefinitions] = useState(wordObj.definitions??[]);
     const [newDefinition, setNewDefinition] = useState('');
     const [errorMessages, setErrorMessages] = useState(null);
 
-    console.log(newWord, newDefinitions)
     const handleChange = (event) => {
         event.preventDefault();
         if (event.target.name === 'word') setNewWord(event.target.value);
@@ -34,9 +33,22 @@ export const EditWordForm = ({wordObj}) => {
         setNewDefinitions(newDefinitions.filter((d, i) => i != index));
     }
 
-    const handleOnSubmit = (event) => {
+    const handleOnSubmit = async (event) => {
         event.preventDefault();
-
+        const word = {
+            word: newWord,
+            definitions: newDefinitions
+        }
+        try {
+            // console.log(slug, wordObj._id, word);
+            const response = await codexService.editWord(slug, wordObj._id, word);
+            setWordObj(response);
+            resetStates();
+            setEditWord(false);
+        }
+        catch (e) {
+            console.error(e);
+        }
     }
 
     return(

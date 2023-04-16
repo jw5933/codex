@@ -25,7 +25,7 @@ export default function DirectorySlug() {
 
     return (
         <>
-            <Codex codex={codex}/>
+            <Codex slug={slug} codex={codex} setCodex={setCodex}/>
             <WordForm slug={slug} codex={codex} setCodex={setCodex}/>
         </>
     )

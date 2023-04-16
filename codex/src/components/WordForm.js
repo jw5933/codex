@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import codexService from '../services/codex'
-import {useRouter} from "next/router";
-import codex from "../services/codex";
 import {createValidator, isRequired, combineValidators, composeValidators} from 'revalidate';
 import {ErrorMessages} from "@/components/ErrorMessage";
 
@@ -18,7 +16,6 @@ const alreadyExists = (arrName, customMessage) => createValidator(
 )
 
 const WordForm = ({slug, codex, setCodex}) => {
-    const router = useRouter();
     const [visible, setVisible] = useState(false);
     const [newWord, setNewWord] = useState('');
     const [newDefinitions, setNewDefinitions] = useState([]);
@@ -28,7 +25,6 @@ const WordForm = ({slug, codex, setCodex}) => {
     const formValidator = combineValidators ({
         word: isRequired('word'),
         arr: alreadyExists(`Codex, ${codex.name}`, ' Please edit the definition instead.')('word'),
-        definition: isRequired('definition')
     })
 
     const handleVisibility = (event) => {
@@ -64,11 +60,8 @@ const WordForm = ({slug, codex, setCodex}) => {
                 arr: {
                     arr: codex.words.map(obj => obj.word),
                     value: newWord
-                },
-                definition: newDefinitions
+                }
             });
-            console.log('invalid', invalid)
-            console.log('word', newWord);
 
             if (Object.keys(invalid).length) {
                 setErrorMessages(invalid);
@@ -78,9 +71,7 @@ const WordForm = ({slug, codex, setCodex}) => {
             const updatedCodex = await codexService.createNewWord(
                 slug,
                 {word: newWord, definitions: newDefinitions});
-            await router.push(router.asPath);
             resetStates();
-            console.log(updatedCodex);
             setCodex(updatedCodex);
         }catch (e){
             console.log(e);
