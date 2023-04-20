@@ -3,6 +3,7 @@ import {Codex} from "@/components/Codex";
 import WordForm from "@/components/WordForm";
 import { useRouter } from 'next/router';
 import {useEffect, useState} from "react";
+import Layout from "@/components/Layout";
 
 export default function DirectorySlug() {
     const router = useRouter();
@@ -25,8 +26,13 @@ export default function DirectorySlug() {
 
     return (
         <>
-            <Codex slug={slug} codex={codex} setCodex={setCodex}/>
-            <WordForm slug={slug} codex={codex} setCodex={setCodex}/>
+            <Layout>
+                <div className={'codex-container'}>
+                    <h1>{codex.name}</h1>
+                    <WordForm slug={slug} codex={codex} setCodex={setCodex}/>
+                    <Codex slug={slug} codex={codex} setCodex={setCodex}/>
+                </div>
+            </Layout>
         </>
     )
 

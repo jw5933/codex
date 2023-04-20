@@ -52,7 +52,7 @@ export const EditWordForm = ({slug, wordObj, setWordObj, setEditWord}) => {
     }
 
     return(
-        <form onSubmit = {handleOnSubmit}>
+        <form className={'form-container'} onSubmit = {handleOnSubmit}>
             <label>
                 Word: <input type={"text"} value={newWord} name={"word"} onChange={handleChange}/>
             </label>

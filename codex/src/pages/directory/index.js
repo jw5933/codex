@@ -1,8 +1,11 @@
 import {Directory} from "@/components/Directory";
+import Layout from "@/components/Layout";
 export default function Index() {
     return (
         <>
-            <Directory/>
+            <Layout>
+                <Directory/>
+            </Layout>
         </>
     )
 }

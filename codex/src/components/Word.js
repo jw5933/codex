@@ -23,24 +23,20 @@ export const Word = ({slug, wordObject, setCodex}) => {
                     <button onClick={() => setEditWord(false)}>Cancel</button>
                 </div>)
 
-                : (<table>
-                    <thead>
-                        <tr>
-                            <td className={'word_row'}>
-                                {wordObj.word}
-                                <div className={`flexbox`}>
-                                <button onClick={() => setEditWord(true)}>Edit</button>
-                                <button onClick={() => handleDeleteWord()}>Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
+                : (<div className={'word-container'}>
+                    <div className={'word-row'}>
+                        {wordObj.word}
+                        <div className={`flexbox`}>
+                        <button onClick={() => setEditWord(true)}>Edit</button>
+                        <button onClick={() => handleDeleteWord()}>Delete</button>
+                        </div>
+                    </div>
+                    <div className={'definitions-container'}>
                     {wordObj.definitions?.map( (definitionObj, index) =>
-                        <tr key={index}><td className={'indent'}>{definitionObj.definition}</td></tr>
+                        <div key={index} className={'indent definition-row'}>{definitionObj.definition}</div>
                     )}
-                    </tbody>
-                </table>)
+                    </div>
+                </div>)
             )}
         </>
     )

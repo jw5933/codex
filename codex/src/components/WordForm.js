@@ -81,9 +81,9 @@ const WordForm = ({slug, codex, setCodex}) => {
 
     return (
         <>
-            {!visible ? (<button onClick={handleVisibility}>Create Word</button>)
+            {!visible ? (<button onClick={handleVisibility}>Add new word</button>)
                 :
-                (<form onSubmit = {handleOnSubmit}>
+                (<form className={'form-container'} onSubmit = {handleOnSubmit}>
                     <label>
                         Word: <input type={"text"} value={newWord} name={"word"} onChange={handleChange}/>
                     </label>

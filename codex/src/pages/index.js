@@ -1,22 +1,10 @@
-import Head from "next/head";
-const NavBar = () => {
-    return(
-        <div>
-            Hello.
-        </div>
-    )
-}
-
+import Layout from "@/components/Layout";
 export default function Home() {
     return(
         <>
-            <Head>
-                <title>Codex</title>
-            </Head>
-            <main>
-                <NavBar/>
-                This is the '/' page. Go to '/directory'
-            </main>
+            <Layout>
+                <p>This is the '/' page. Go to '/directory'</p>
+            </Layout>
         </>
     )
 }

@@ -8,7 +8,6 @@ header {
     text-align: center;
     background-color: darkslateblue;
     color: white;
-    padding: 20px;
     width: 100%;
 }
 
@@ -60,6 +59,7 @@ nav a:hover {
     padding-right: 10px;
 }
 
+/*table*/
 table {
     border-collapse: collapse;
     width: 100%;
@@ -68,53 +68,72 @@ table {
 th, td {
     text-align: left;
     padding: 6px;
-    border: 1px solid darkgrey;
-    font-size: 14px;
 }
 
-thead {
+.directory thead {
     background-color: slategrey;
 }
 
-tbody {
+.directory tbody {
     background-color: aliceblue;
 }
 
-form {
-    margin: 5px auto;
+.directory th, .directory td {
+    border: 1px solid darkgrey;
 }
 
-form.input {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: 60%;
-    margin: 0 auto;
+/*codex*/
+.codex-container {
+    margin: 10px;
+    padding: 5px;
+    max-width: 50vw;
 }
 
-form.input input[type="text"],
-form.input input[type="number"],
-form.input select {
-    padding: 2px;
-    margin-bottom: 0px;
-    border: 1px solid lightgrey;
-    border-radius: 2px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
+.codex-container h2 {
+    margin: 0;
 }
 
-form.input input[type="submit"] {
-    background-color: cornflowerblue;
+.word-container {
+    margin: 10px;
+}
+
+.word-row {
+    background-color: black;
     color: white;
-    border: none;
-    border-radius: 2px;
-    padding: 10px 20px;
-    cursor: pointer;
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-radius: 5px;
 }
 
-form.input input[type="submit"]:hover {
-    background-color: royalblue;
+.definitions-container {
+    margin-left: 30px;
+    border-left: 2px solid black;
+}
+
+.definitions-container >*:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.definition-row {
+    padding: 3px;
+}
+
+.indent {
+    padding-left: 20px;
+}
+
+
+/*form*/
+.form-container {
+    background-color: black;
+    color: white;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 .flexbox {
@@ -142,14 +161,4 @@ form.input input[type="submit"]:hover {
     padding: 0px;
     margin: 2px 0;
     background-color: #ffd2db;
-}
-
-td.word_row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-td.indent {
-    padding-left: 20px;
 }

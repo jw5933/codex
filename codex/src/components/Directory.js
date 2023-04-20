@@ -24,7 +24,7 @@ export const Directory = () => {
 
 
     return (
-        <>
+        <div className={'directory'}>
             <table>
                 <thead>
                 <tr>
@@ -49,6 +49,6 @@ export const Directory = () => {
                 </tbody>
             </table>
             <CodexForm/>
-        </>
+        </div>
     )
 }
